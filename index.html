@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classical Dances of India</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .dance-content {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .dance-list {
+            flex: 1;
+            padding-right: 20px;
+            border-right: 1px solid #ddd;
+        }
+        .dance-list ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .dance-list li {
+            padding: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s;
+        }
+        .dance-list li:hover {
+            background-color: #eef;
+        }
+        .dance-list li.active {
+            background-color: #d1e4ff;
+            font-weight: bold;
+        }
+        .dance-details {
+            flex: 2;
+            padding-left: 20px;
+        }
+        .dance-details h2 {
+            margin-top: 0;
+            color: #555;
+        }
+        .dance-details p {
+            line-height: 1.6;
+        }
+        #info-panel {
+            min-height: 150px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-left: 5px solid #007bff;
+            border-radius: 5px;
+        }
+        #info-panel img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            .dance-content {
+                flex-direction: column;
+            }
+            .dance-list {
+                border-right: none;
+                border-bottom: 1px solid #ddd;
+                padding-right: 0;
+                padding-bottom: 20px;
+            }
+            .dance-details {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Classical Dances of India</h1>
+    <div class="dance-content">
+        <div class="dance-list">
+            <h2>Select a Dance Form:</h2>
+            <ul id="dance-forms-list">
+                <li data-dance="bharatanatyam">Bharatanatyam</li>
+                <li data-dance="kathak">Kathak</li>
+                <li data-dance="kathakali">Kathakali</li>
+                <li data-dance="kuchipudi">Kuchipudi</li>
+                <li data-dance="odissi">Odissi</li>
+                <li data-dance="manipuri">Manipuri</li>
+                <li data-dance="mohiniyattam">Mohiniyattam</li>
+                <li data-dance="sattriya">Sattriya</li>
+            </ul>
+        </div>
+        <div class="dance-details">
+            <h2>Details</h2>
+            <div id="info-panel">
+                <p>Click on any dance form from the list to see its details and an image.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const danceData = {
+        bharatanatyam: {
+            state: "Tamil Nadu",
+            founder: "E. Krishna Iyer",
+            year: "1930s (Revitalization)",
+            description: "An ancient and revered dance form known for its fixed torso, bent legs, and a sophisticated vocabulary of gestures and expressions. It is rooted in Hindu religious themes.",
+            image: "https://images.pexels.com/photos/30481578/pexels-photo-30481578.jpeg"
+        },
+        kathak: {
+            state: "Uttar Pradesh (Northern India)",
+            founder: "Rooted in ancient storytelling traditions, no single founder.",
+            year: "Ancient origins, evolved during Mughal era.",
+            description: "Characterized by intricate footwork, graceful movements, and the rapid, pirouetting spins. Its origins are in the storytelling tradition of temples.",
+            image: "https://images.pexels.com/photos/18556557/pexels-photo-18556557/free-photo-of-kathak-dancer-in-sari.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        kathakali: {
+            state: "Kerala",
+            founder: "Multiple ancient traditions contributing to its development.",
+            year: "17th Century",
+            description: "A visually stunning dance-drama known for its elaborate makeup, costumes, and exaggerated facial expressions. It dramatizes stories from the Indian epics.",
+            image: "https://www.pexels.com/photo/traditional-kathakali-dance-performance-29451111/"
+        },
+        kuchipudi: {
+            state: "Andhra Pradesh",
+            founder: "Siddhendra Yogi (17th Century)",
+            year: "17th Century",
+            description: "Combines classical dance, drama, and music. Performers often deliver dialogue and can dance on a brass plate with a pot of water on their head.",
+            image: "https://images.pexels.com/photos/11097241/pexels-photo-11097241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        odissi: {
+            state: "Odisha",
+            founder: "Rooted in ancient temple dance traditions, no single founder.",
+            year: "Ancient origins, revitalized in the mid-20th century.",
+            description: "Known for its distinctive 'Tribhanga' (triple-bend) posture and graceful, lyrical movements. It is a temple dance that often depicts stories of Lord Jagannath.",
+            image: "https://images.pexels.com/photos/10189721/pexels-photo-10189721.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        manipuri: {
+            state: "Manipur",
+            founder: "Inspired by ancient rituals, no single founder.",
+            year: "Developed over centuries, formalized in the 18th century.",
+            description: "A gentle and graceful dance form distinguished by its subtle movements and costumes. It is deeply associated with the Manipuri Vaishnavite tradition.",
+            image: "https://images.pexels.com/photos/16726207/pexels-photo-16726207/free-photo-of-indian-woman-dancing-kathak-at-night.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        mohiniyattam: {
+            state: "Kerala",
+            founder: "Swathi Thirunal Rama Varma (19th Century) is credited with its revival.",
+            year: "Formalized in the 19th Century",
+            description: "A solo dance form for women, known for its gentle, graceful, and swaying movements. It means 'dance of the enchantress'.",
+            image: "https://images.pexels.com/photos/30444651/pexels-photo-30444651/free-photo-of-traditional-mohiniyattam-dancer-in-kerala-setting.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        sattriya: {
+            state: "Assam",
+            founder: "Srimanta Sankardeva (15th Century)",
+            year: "15th Century",
+            description: "Developed by the Bhakti movement saint Srimanta Sankardeva as a way to spread the Vaishnavite religion. It combines dance, drama, and music.",
+            image: "https://images.pexels.com/photos/11097241/pexels-photo-11097241.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        }
+    };
+
+    const list = document.getElementById('dance-forms-list');
+    const infoPanel = document.getElementById('info-panel');
+
+    list.addEventListener('click', function(event) {
+        const clickedItem = event.target.closest('li');
+        if (!clickedItem) return;
+
+        const danceName = clickedItem.dataset.dance;
+        const details = danceData[danceName];
+
+        if (details) {
+            // Update the info panel with details and image
+            infoPanel.innerHTML = `
+                <img src="${details.image}" alt="Image of ${clickedItem.textContent}">
+                <h2>${clickedItem.textContent}</h2>
+                <p><strong>State of Origin:</strong> ${details.state}</p>
+                <p><strong>Founder / Notable Figures:</strong> ${details.founder}</p>
+                <p><strong>Period of Development:</strong> ${details.year}</p>
+                <p><strong>Description:</strong> ${details.description}</p>
+            `;
+
+            // Remove 'active' class from all list items
+            document.querySelectorAll('#dance-forms-list li').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Add 'active' class to the clicked list item
+            clickedItem.classList.add('active');
+        }
+    });
+</script>
+
+</body>
+</html>
